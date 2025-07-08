@@ -67,4 +67,42 @@ print(discount_prices)
 print(np.where(k1))
 print(np.asarray(k1).nonzero())
 
-# Use-Case: Fitness Data
+# Use-Case: Fitness Data Analysis
+
+data = np.loadtxt('fit.txt', dtype = 'str')
+#print(data)
+print(data[0])
+print(data[:5])
+
+print(data[:, 0])
+data_transpose = data.T
+print(data_transpose)
+date, step_count, mood, calories_burnt, hrs_of_sleep, status = data_transpose
+print(date)
+print(mood)
+step_count = np.array(step_count, dtype = 'int')
+calories_burnt = np.array(calories_burnt, dtype = 'int')
+hrs_of_sleep = np.array(hrs_of_sleep, dtype = 'int')
+print(step_count)
+print(np.unique(mood, return_counts=True))
+print(step_count.max())
+
+happy_mood = step_count[mood == 'Happy']
+print(len(happy_mood))
+sad_mood = step_count[mood == 'Sad']
+print(len(sad_mood))
+neutral_mood = step_count[mood == 'Neutral']
+print(len(neutral_mood))
+
+happy_or_sad_mood = mood[(mood == 'Happy') | (mood == 'Sad')]
+print(len(happy_or_sad_mood))
+
+print(len(mood[mood == 'Happy']))
+avg_step_count_happy = np.average(step_count[mood == 'Happy'])
+print(avg_step_count_happy)
+avg_step_count_sad = np.average(step_count[mood == 'Sad'])
+print(avg_step_count_sad)
+
+unique_mood = np.unique(mood[step_count > 4000], return_counts = True)
+print(unique_mood)
+
