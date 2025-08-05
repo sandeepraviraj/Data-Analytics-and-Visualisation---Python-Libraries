@@ -64,6 +64,8 @@ res = np.vectorize(even_odd)(a4) # np.vectorize() ---> Accepts array as a parame
 print(res)
 
 # Broadcasting
+print("Broadcasting")
+print(np.tile(np.arange(0, 40, 10), (3, 1)))
 a5 = np.tile(np.arange(0, 40, 10), (3, 1)).T
 print(a5)
 b5 = np.tile(np.arange(0, 3), (4, 1))
