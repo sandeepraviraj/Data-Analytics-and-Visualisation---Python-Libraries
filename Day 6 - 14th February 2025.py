@@ -67,6 +67,23 @@ print(df.sort_values(by=['year', 'life_exp'], ascending=True))
 print(df.sort_values(by=['year', 'life_exp'], ascending=[True, False]))
 
 # Concatenate Dataframes
+users = pd.DataFrame({'user_id': [1, 2, 3], 'name': ['Alice', 'Bob', 'Charlie']})
+print(users)
 
+mesg = pd.DataFrame({'user_id': [1, 1, 2, 4], "msg": ['Hello', 'Hi', 'How are you', 'Bye']})
+print(mesg)
 
+print(pd.concat([users, mesg], ignore_index = True))
+
+# Note: To perform joins on dataframes, its efficient to use merge rather than concat.
 # Merging Dataframes
+res = users.merge(mesg, how = 'outer', on='user_id')
+print(res)
+
+print(pd.merge(users, mesg))
+
+df1 = pd.DataFrame({'A':[10,30], 'B':[20,40], 'C':[30, 60]})
+df2 = pd.DataFrame({'A':[10,30], 'C':[30, 60]})
+df3 = df2.merge(df1, on = 'A', how = 'outer')
+print(df3.shape)
+print(df3)
