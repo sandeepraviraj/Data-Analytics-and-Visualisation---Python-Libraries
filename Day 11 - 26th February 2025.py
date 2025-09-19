@@ -113,3 +113,61 @@ sns.barplot(x = "Publisher", y = "Global_Sales", data = top5_games_data, order =
 plt.show()
 
 # Subplots
+# Method 1 Using seaborn
+fig = plt.figure(figsize = (8, 4))
+
+plt.subplot(2, 3, 1)
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["NA_Sales"], data = top5_games_data, color = "grey")
+
+plt.subplot(2, 3, 3)
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["JP_Sales"], data = top5_games_data, color = "orange")
+
+plt.subplot(2, 3, 4)
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["Global_Sales"], data = top5_games_data, color = "blue")
+
+plt.subplot(2, 3, 6)
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["Other_Sales"], data = top5_games_data, color = "green")
+
+plt.subplot(1, 3, 2)
+sns.countplot(x = "Publisher", data = top5_games_data, order = sorted(top5_publisher))
+plt.xlabel("Publisher")
+plt.ylabel("Number of Games")
+plt.xticks(rotation=90, fontsize=8)
+fig.suptitle("Games Sales Dashboard", fontsize = 16)
+
+plt.show()
+
+fig = plt.figure(figsize = (10, 8))
+plt.subplot(2, 3, (1, 6)) # Useless because we are using the entire grid for one plot. It is same as not using subplot at all.
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["NA_Sales"], data = top5_games_data, color = "grey")
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["JP_Sales"], data = top5_games_data, color = "orange")
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["Global_Sales"], data = top5_games_data, color = "blue")
+sns.scatterplot(x = top5_games_data["EU_Sales"], y = top5_games_data["Other_Sales"], data = top5_games_data, color = "green")
+fig.suptitle("Scatter Plot of EU Sales vs all the Other Sales", fontsize = 16)
+plt.xlabel("EU Sales (in millions)")
+plt.ylabel("All Other Sales (in millions)")
+plt.show()
+
+# Method 2 Using matplotlib
+fig, ax = plt.subplots(2, 2, figsize = (15, 10))
+
+ax[0, 0].scatter(top5_games_data["EU_Sales"], top5_games_data["NA_Sales"], color = "grey")
+ax[0, 0].set_title("EU Sales vs NA Sales")
+ax[0, 0].set_xlabel("EU Sales (in millions)")
+ax[0, 0].set_ylabel("NA Sales (in millions)")
+ax[0, 1].scatter(top5_games_data["EU_Sales"], top5_games_data["JP_Sales"], color = "orange")
+ax[0, 1].set_title("EU Sales vs JP Sales")
+ax[0, 1].set_xlabel("EU Sales (in millions)")
+ax[0, 1].set_ylabel("JP Sales (in millions)")
+ax[1, 0].scatter(top5_games_data["EU_Sales"], top5_games_data["Global_Sales"], color = "blue")
+ax[1, 0].set_title("EU Sales vs Global Sales")
+ax[1, 0].set_xlabel("EU Sales (in millions)")
+ax[1, 0].set_ylabel("Global Sales (in millions)")
+ax[1, 1].scatter(top5_games_data["EU_Sales"], top5_games_data["Other_Sales"], color = "green")
+ax[1, 1].set_title("EU Sales vs Other Sales")
+ax[1, 1].set_xlabel("EU Sales (in millions)")
+ax[1, 1].set_ylabel("Other Sales (in millions)")
+fig.suptitle("Scatter Plot of EU Sales vs all the Other Sales", fontsize = 16)
+plt.tight_layout()
+plt.show()
+
